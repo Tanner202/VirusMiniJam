@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdelka6xtni01"]
+
+[ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
+[ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
+[ext_resource type="PackedScene" uid="uid://cwtn3yhj57u4j" path="res://scenes/enemy.tscn" id="3_sg62g"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ge1hc")]
+
+[node name="Payload" parent="." instance=ExtResource("2_t1c6u")]
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sg62g")]
+target = NodePath("../Payload")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sg62g")]
+position = Vector2(-719, 438)
+target = NodePath("../Payload")
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sg62g")]
+position = Vector2(856, -73)
+target = NodePath("../Payload")
+
+[node name="Enemy5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sg62g")]
+position = Vector2(935, -540)
+target = NodePath("../Payload")
+
+[node name="Enemy6" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sg62g")]
+position = Vector2(-976, 28)
+target = NodePath("../Payload")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_sg62g")]
+position = Vector2(452, 371)
+target = NodePath("../Payload")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)

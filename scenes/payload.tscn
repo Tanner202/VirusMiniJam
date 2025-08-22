@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://chhyk05c5d8ig"]
+
+[ext_resource type="Texture2D" uid="uid://72mk4dcs2qcm" path="res://sprites/itchpayload.png" id="1_5iad6"]
+[ext_resource type="PackedScene" uid="uid://8g7xvprl3522" path="res://scenes/health.tscn" id="1_oy2ox"]
+[ext_resource type="Script" path="res://scripts/payload.gd" id="1_ro33r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epb5t"]
+size = Vector2(208, 202)
+
+[node name="Payload" type="Node2D"]
+position = Vector2(-3, -6)
+script = ExtResource("1_ro33r")
+
+[node name="Health" parent="." instance=ExtResource("1_oy2ox")]
+health = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5iad6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_epb5t")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

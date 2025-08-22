@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyhni288en4uk"
-path="res://.godot/imported/itchplayer.png-dec91446b84b2939d0cf2d7ec39a3a92.ctex"
+path="res://.godot/imported/itchplayer.png-73725f9c1a7b7d7a1ec2464ed77c823a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://itchplayer.png"
-dest_files=["res://.godot/imported/itchplayer.png-dec91446b84b2939d0cf2d7ec39a3a92.ctex"]
+source_file="res://sprites/itchplayer.png"
+dest_files=["res://.godot/imported/itchplayer.png-73725f9c1a7b7d7a1ec2464ed77c823a.ctex"]
 
 [params]
 
