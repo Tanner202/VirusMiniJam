@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var projectile_prefab: PackedScene
+@export var shooting_point: Node2D
 
 var speed := 200
 
@@ -20,6 +21,5 @@ func shoot():
 	var mouse_position = get_global_mouse_position()
 	var projectile = projectile_prefab.instantiate()
 	get_tree().root.add_child(projectile)
-	projectile.global_position = global_position
+	projectile.global_position = shooting_point.global_position
 	projectile.direction = (mouse_position - global_position).normalized()
-	

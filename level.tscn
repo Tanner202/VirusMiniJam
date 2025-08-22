@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=6 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_sphoe"]
 [ext_resource type="PackedScene" uid="uid://bfq0nvirsci3v" path="res://projectile.tscn" id="2_i7db2"]
 [ext_resource type="Texture2D" uid="uid://cyhni288en4uk" path="res://itchplayer.png" id="3_8fora"]
+[ext_resource type="Texture2D" uid="uid://dpk53ufkchi5r" path="res://itchgun.jpg" id="4_y6yco"]
+[ext_resource type="Script" path="res://weapon_sprite.gd" id="5_6u0xh"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" type="Node2D" parent="."]
+[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("shooting_point")]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_sphoe")
 projectile_prefab = ExtResource("2_i7db2")
+shooting_point = NodePath("WeaponRotationPoint/WeaponSprite")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.5, 0.5)
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("3_8fora")
+
+[node name="WeaponRotationPoint" type="Node2D" parent="Player" node_paths=PackedStringArray("weapon_sprite")]
+script = ExtResource("5_6u0xh")
+weapon_sprite = NodePath("WeaponSprite")
+
+[node name="WeaponSprite" type="Sprite2D" parent="Player/WeaponRotationPoint"]
+position = Vector2(-128, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_y6yco")
