@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var projectile_prefab: PackedScene
+
 var speed := 200
 
 func _process(delta: float) -> void:
@@ -11,3 +13,13 @@ func _process(delta: float) -> void:
 		global_position.x += speed * delta
 	if (Input.is_action_pressed("left")):
 		global_position.x -= speed * delta
+	if (Input.is_action_just_pressed("left_click")):
+		shoot()
+
+func shoot():
+	var mouse_position = get_global_mouse_position()
+	var projectile = projectile_prefab.instantiate()
+	get_tree().root.add_child(projectile)
+	projectile.global_position = global_position
+	projectile.direction = (mouse_position - global_position).normalized()
+	
