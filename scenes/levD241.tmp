@@ -35,6 +35,5 @@ position = Vector2(1512, -141)
 position = Vector2(267, 1043)
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
-autostart = true
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
