@@ -3,7 +3,7 @@ extends Node2D
 @export var projectile_prefab: PackedScene
 @export var shooting_point: Node2D
 
-var speed := 200
+var speed := 400
 
 func _process(delta: float) -> void:
 	if (Input.is_action_pressed("up")):
