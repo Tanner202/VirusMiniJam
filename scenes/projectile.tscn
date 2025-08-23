@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfq0nvirsci3v"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_h07gt"]
-[ext_resource type="Texture2D" uid="uid://buu7n3lnew743" path="res://sprites/icon.svg" id="2_sroqb"]
+[ext_resource type="Texture2D" uid="uid://fh6wbsndw7hg" path="res://sprites/itchbullet.png" id="2_160a1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hs01"]
 size = Vector2(130, 130)
@@ -11,7 +11,7 @@ scale = Vector2(0.2, 0.2)
 script = ExtResource("1_h07gt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_sroqb")
+texture = ExtResource("2_160a1")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 3
