@@ -80,6 +80,7 @@ game_over_image = NodePath("GameOverImage")
 
 [node name="VictoryImage" type="TextureRect" parent="CanvasLayer/GameUI"]
 visible = false
+layout_mode = 0
 offset_left = 288.0
 offset_top = 199.0
 offset_right = 855.0
@@ -88,6 +89,7 @@ texture = ExtResource("9_uo6hk")
 
 [node name="GameOverImage" type="TextureRect" parent="CanvasLayer/GameUI"]
 visible = false
+layout_mode = 0
 offset_left = 288.0
 offset_top = 199.0
 offset_right = 855.0
