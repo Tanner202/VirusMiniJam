@@ -17,7 +17,7 @@ config/icon="res://sprites/icon.svg"
 
 [autoload]
 
-Payload="*res://scripts/payload.gd"
+GameManager="*res://scripts/game_manager.gd"
 
 [input]
 

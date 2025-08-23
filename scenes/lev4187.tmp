@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=8 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
 [ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
@@ -7,23 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://c6lnjuynd2f23" path="res://sprites/itchgoal.png" id="5_5t7n8"]
 [ext_resource type="Script" path="res://scripts/progress_bar.gd" id="5_vi4ew"]
 [ext_resource type="Texture2D" uid="uid://bclnw5n8awomh" path="res://sprites/itchgameover.png" id="7_3b004"]
-[ext_resource type="Script" path="res://scripts/game_over_ui.gd" id="8_80uab"]
-[ext_resource type="Texture2D" uid="uid://dvhaqwby2y0lg" path="res://sprites/itchwin2.png" id="9_uo6hk"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ge1hc")]
 
-[node name="Payload" parent="." instance=ExtResource("2_t1c6u")]
+[node name="Payload" parent="." node_paths=PackedStringArray("game_over_screen") instance=ExtResource("2_t1c6u")]
+game_over_screen = NodePath("../CanvasLayer/GameOverImage")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
-[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("spawnpoints", "enemy_target")]
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("spawnpoints")]
 script = ExtResource("4_v4agu")
 enemy_prefab = ExtResource("3_sg62g")
 spawnpoints = [NodePath("Spawnpoint1"), NodePath("Spawnpoint2"), NodePath("Spawnpoint3"), NodePath("Spawnpoint4"), NodePath("Spawnpoint5")]
-enemy_target = NodePath("../Payload")
 
 [node name="Spawnpoint1" type="Node2D" parent="EnemySpawner"]
 position = Vector2(-1420, 944)
@@ -69,24 +67,7 @@ offset_bottom = 141.0
 texture = ExtResource("5_5t7n8")
 expand_mode = 3
 
-[node name="GameUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("victory_image", "game_over_image")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("8_80uab")
-victory_image = NodePath("VictoryImage")
-game_over_image = NodePath("GameOverImage")
-
-[node name="VictoryImage" type="TextureRect" parent="CanvasLayer/GameUI"]
-visible = false
-offset_left = 288.0
-offset_top = 199.0
-offset_right = 855.0
-offset_bottom = 447.0
-texture = ExtResource("9_uo6hk")
-
-[node name="GameOverImage" type="TextureRect" parent="CanvasLayer/GameUI"]
+[node name="GameOverImage" type="TextureRect" parent="CanvasLayer"]
 visible = false
 offset_left = 288.0
 offset_top = 199.0
