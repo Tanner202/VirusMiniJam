@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://3cojvdnf5j0n"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_2t76y"]
+[ext_resource type="Texture2D" uid="uid://bo6yopf68hej4" path="res://sprites/itchtitle.jpg" id="1_yxt4o"]
+[ext_resource type="PackedScene" uid="uid://bdelka6xtni01" path="res://scenes/level.tscn" id="2_i8agi"]
+[ext_resource type="Script" path="res://scripts/control_screen.gd" id="3_ki6so"]
+[ext_resource type="Texture2D" uid="uid://dlowwfoj00dft" path="res://sprites/itchcontrols.jpg" id="4_0gahg"]
+[ext_resource type="Texture2D" uid="uid://dxoclb658tccd" path="res://sprites/itchplot.jpg" id="5_d1l4e"]
+[ext_resource type="Script" path="res://scripts/lore_screen.gd" id="5_uui7m"]
+
+[node name="TitleScreen" type="CanvasLayer"]
+
+[node name="TitleScreen" type="Control" parent="." node_paths=PackedStringArray("control_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2t76y")
+control_screen = NodePath("../ControlScreen")
+
+[node name="TitleScreenImage" type="TextureRect" parent="TitleScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yxt4o")
+expand_mode = 3
+
+[node name="ControlScreen" type="Control" parent="." node_paths=PackedStringArray("lore_screen")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ki6so")
+lore_screen = NodePath("../LoreScreen")
+
+[node name="ControlScreenImage" type="TextureRect" parent="ControlScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_0gahg")
+expand_mode = 3
+
+[node name="StartButton" type="Button" parent="ControlScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.821181
+anchor_top = 0.871914
+anchor_right = 0.938368
+anchor_bottom = 0.979938
+grow_horizontal = 0
+grow_vertical = 0
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Button" parent="ControlScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.588542
+anchor_top = 0.871914
+anchor_right = 0.705729
+anchor_bottom = 0.979938
+grow_horizontal = 0
+grow_vertical = 0
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="LoreScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_uui7m")
+game_scene = ExtResource("2_i8agi")
+
+[node name="LoreImage" type="TextureRect" parent="LoreScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 31.1111
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_d1l4e")
+expand_mode = 3
+
+[node name="StartButton" type="Button" parent="LoreScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.594618
+anchor_top = 0.731481
+anchor_right = 0.867188
+anchor_bottom = 0.882716
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(-189, -24)
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Button" parent="LoreScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.151042
+anchor_top = 0.733025
+anchor_right = 0.425347
+anchor_bottom = 0.87963
+offset_top = -3.05176e-05
+grow_vertical = 0
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ControlScreen/StartButton" to="ControlScreen" method="_on_start_button_pressed"]
+[connection signal="pressed" from="ControlScreen/QuitButton" to="ControlScreen" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="LoreScreen/StartButton" to="LoreScreen" method="_on_start_button_pressed"]
+[connection signal="pressed" from="LoreScreen/QuitButton" to="LoreScreen" method="_on_quit_button_pressed"]
