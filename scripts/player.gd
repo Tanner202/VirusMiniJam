@@ -33,6 +33,11 @@ func _physics_process(delta: float) -> void:
 	external_velocity = external_velocity.move_toward(Vector2.ZERO, external_velocity_decay * delta)
 	move_and_slide()
 
+func _process(delta: float) -> void:
+	var mouse_direction = (global_position - get_global_mouse_position()).normalized()
+	rotation = mouse_direction.angle()
+	rotation_degrees -= 90
+
 func shoot():
 	var mouse_position = get_global_mouse_position()
 	var projectile = projectile_prefab.instantiate()

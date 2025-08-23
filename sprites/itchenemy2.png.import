@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpk53ufkchi5r"
-path="res://.godot/imported/itchgun.jpg-f0272600d3f2acfd9238394e7df2a183.ctex"
+uid="uid://mr5naf1p6nmh"
+path="res://.godot/imported/itchenemy2.png-276920ec8b1dff5c1c08e3a1bc700747.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/itchgun.jpg"
-dest_files=["res://.godot/imported/itchgun.jpg-f0272600d3f2acfd9238394e7df2a183.ctex"]
+source_file="res://sprites/itchenemy2.png"
+dest_files=["res://.godot/imported/itchenemy2.png-276920ec8b1dff5c1c08e3a1bc700747.ctex"]
 
 [params]
 

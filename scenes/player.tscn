@@ -1,31 +1,30 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb4mvmnor35yi"]
+[gd_scene load_steps=6 format=3 uid="uid://bb4mvmnor35yi"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ivysg"]
 [ext_resource type="PackedScene" uid="uid://bfq0nvirsci3v" path="res://scenes/projectile.tscn" id="2_3ig6o"]
-[ext_resource type="Texture2D" uid="uid://cyhni288en4uk" path="res://sprites/itchplayer.png" id="3_rtcri"]
-[ext_resource type="Script" path="res://scripts/weapon_sprite.gd" id="4_h4mtg"]
-[ext_resource type="Texture2D" uid="uid://dpk53ufkchi5r" path="res://sprites/itchgun.jpg" id="5_pisyu"]
+[ext_resource type="Texture2D" uid="uid://dk5dbeh75w1yx" path="res://sprites/itchgun2.png" id="3_n0hrh"]
+[ext_resource type="Texture2D" uid="uid://bv0n7n1f8loum" path="res://sprites/itchplayer4.png" id="3_rqf1m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32xag"]
 radius = 88.45
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shooting_point")]
 position = Vector2(295, -302)
+collision_layer = 4
 script = ExtResource("1_ivysg")
 projectile_prefab = ExtResource("2_3ig6o")
-shooting_point = NodePath("WeaponRotationPoint/WeaponSprite")
+shooting_point = NodePath("ShootingPoint")
+
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -35)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_n0hrh")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("3_rtcri")
-
-[node name="WeaponRotationPoint" type="Node2D" parent="." node_paths=PackedStringArray("weapon_sprite")]
-script = ExtResource("4_h4mtg")
-weapon_sprite = NodePath("WeaponSprite")
-
-[node name="WeaponSprite" type="Sprite2D" parent="WeaponRotationPoint"]
-position = Vector2(-128, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_pisyu")
+texture = ExtResource("3_rqf1m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_32xag")
+
+[node name="ShootingPoint" type="Node2D" parent="."]
+position = Vector2(0, -75)

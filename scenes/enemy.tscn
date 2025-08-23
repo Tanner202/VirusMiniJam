@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwtn3yhj57u4j"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_xxp87"]
-[ext_resource type="Texture2D" uid="uid://7uvtfu1cyajr" path="res://sprites/itchenemy.png" id="2_26daj"]
 [ext_resource type="PackedScene" uid="uid://8g7xvprl3522" path="res://scenes/health.tscn" id="2_wdqmq"]
+[ext_resource type="Texture2D" uid="uid://mr5naf1p6nmh" path="res://sprites/itchenemy2.png" id="3_lcffe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uosbp"]
 radius = 80.0
@@ -18,7 +18,7 @@ script = ExtResource("1_xxp87")
 shape = SubResource("CircleShape2D_uosbp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_26daj")
+texture = ExtResource("3_lcffe")
 
 [node name="Area2D" type="Area2D" parent="."]
 
