@@ -1,13 +1,16 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var projectile_prefab: PackedScene
 @export var shooting_point: Node2D
 var firing_interval := 0.25
 var can_shoot := true
+var external_velocity = Vector2.ZERO
+var external_velocity_decay = 1000
+var external_velocity_magnitude_cap = 10000
 
 var speed := 400
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("up"):
 		direction.y = -1
@@ -26,7 +29,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click") and can_shoot:
 		shoot()
 	
-	velocity = direction * speed
+	velocity = direction * speed + external_velocity
+	external_velocity = external_velocity.move_toward(Vector2.ZERO, external_velocity_decay * delta)
 	move_and_slide()
 
 func shoot():
@@ -38,3 +42,6 @@ func shoot():
 	can_shoot = false
 	await get_tree().create_timer(firing_interval).timeout
 	can_shoot = true
+
+func add_external_velocity(velocity: Vector2):
+	external_velocity += velocity

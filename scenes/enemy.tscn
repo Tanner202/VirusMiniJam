@@ -9,6 +9,7 @@ radius = 80.0
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(-916, -435)
+collision_layer = 2
 script = ExtResource("1_xxp87")
 
 [node name="Health" parent="." instance=ExtResource("2_wdqmq")]
@@ -18,3 +19,10 @@ shape = SubResource("CircleShape2D_uosbp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_26daj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uosbp")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
