@@ -13,4 +13,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		var direction = (body.global_position - global_position).normalized()
 		var player = body as Player
-		player.add_external_velocity(direction * knockback_force)
+		player.knockback(direction * knockback_force)

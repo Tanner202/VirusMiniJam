@@ -2,11 +2,13 @@ class_name Player extends CharacterBody2D
 
 @export var projectile_prefab: PackedScene
 @export var shooting_point: Node2D
+@export var ship_sprite: AnimatedSprite2D
 var firing_interval := 0.25
 var can_shoot := true
 var external_velocity = Vector2.ZERO
 var external_velocity_decay = 1000
 var external_velocity_magnitude_cap = 10000
+var hit_duration = 0.1
 
 var speed := 400
 
@@ -48,5 +50,9 @@ func shoot():
 	await get_tree().create_timer(firing_interval).timeout
 	can_shoot = true
 
-func add_external_velocity(velocity: Vector2):
+func knockback(velocity: Vector2):
 	external_velocity += velocity
+	ship_sprite.play("hit")
+	await get_tree().create_timer(hit_duration).timeout
+	ship_sprite.play("default")
+	
