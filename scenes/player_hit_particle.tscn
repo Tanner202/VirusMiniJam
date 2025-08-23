@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmysfk8drj7mj"]
+
+[ext_resource type="Texture2D" uid="uid://olfdlx15u7k1" path="res://sprites/itchpart3.png" id="1_ou8q8"]
+[ext_resource type="Script" path="res://scripts/hit_particle.gd" id="1_rhpvn"]
+
+[node name="HitParticle" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ou8q8")
+script = ExtResource("1_rhpvn")

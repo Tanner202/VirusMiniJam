@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfq0nvirsci3v"]
+[gd_scene load_steps=5 format=3 uid="uid://bfq0nvirsci3v"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_h07gt"]
 [ext_resource type="Texture2D" uid="uid://fh6wbsndw7hg" path="res://sprites/itchbullet.png" id="2_160a1"]
+[ext_resource type="PackedScene" uid="uid://bp62gqbfhefv2" path="res://scenes/projectile_hit_particle.tscn" id="2_d5i31"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hs01"]
 size = Vector2(130, 130)
@@ -9,6 +10,7 @@ size = Vector2(130, 130)
 [node name="Projectile" type="Node2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_h07gt")
+hit_particle_prefab = ExtResource("2_d5i31")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_160a1")

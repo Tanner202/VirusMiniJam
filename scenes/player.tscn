@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb4mvmnor35yi"]
+[gd_scene load_steps=9 format=3 uid="uid://bb4mvmnor35yi"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ivysg"]
 [ext_resource type="PackedScene" uid="uid://bfq0nvirsci3v" path="res://scenes/projectile.tscn" id="2_3ig6o"]
 [ext_resource type="Texture2D" uid="uid://dk5dbeh75w1yx" path="res://sprites/itchgun2.png" id="3_n0hrh"]
 [ext_resource type="Texture2D" uid="uid://bv0n7n1f8loum" path="res://sprites/itchplayer4.png" id="3_rqf1m"]
+[ext_resource type="PackedScene" uid="uid://bmysfk8drj7mj" path="res://scenes/player_hit_particle.tscn" id="3_trl0y"]
 [ext_resource type="Texture2D" uid="uid://cpayoxgrrlh71" path="res://sprites/itchplayerhurt.png" id="5_xyfll"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32xag"]
@@ -35,6 +36,7 @@ script = ExtResource("1_ivysg")
 projectile_prefab = ExtResource("2_3ig6o")
 shooting_point = NodePath("ShootingPoint")
 ship_sprite = NodePath("AnimatedSprite2D")
+hit_particle_prefab = ExtResource("3_trl0y")
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -35)
