@@ -1,6 +1,7 @@
 extends Node
 
-@onready var timer: Timer = $Timer
+var basic_enemy_timer: Timer
+var tank_timer: Timer
 @export var enemy_prefab: PackedScene
 @export var tank_enemy_prefab: PackedScene
 @export var spawnpoints: Array[Node2D]
@@ -8,26 +9,45 @@ extends Node
 @export var level_manager: LevelManager
 var time_elapsed: float
 var difficulty_stages: Array[DifficultyStage] = [
-	DifficultyStage.new(5, 3),
-	DifficultyStage.new(10, 2.5),
-	DifficultyStage.new(20, 1.9),
-	DifficultyStage.new(30, 1.75),
-	DifficultyStage.new(35, 1.5)
+	DifficultyStage.new(10, 3.5, 0),
+	DifficultyStage.new(20, 2.5, 0),
+	DifficultyStage.new(30, 2, 12),
+	DifficultyStage.new(40, 1.9, 10),
+	DifficultyStage.new(50, 1.8, 8),
+	DifficultyStage.new(80, 1.75, 7),
+	DifficultyStage.new(120, 1.65, 6.5),
+	DifficultyStage.new(180, 1.55, 6),
+	DifficultyStage.new(240, 8, 2)
 ]
-var spawn_interval = 4
 
 func _ready() -> void:
 	level_manager.game_ended.connect(on_game_ended)
+	basic_enemy_timer = Timer.new()
+	basic_enemy_timer.one_shot = false
+	basic_enemy_timer.wait_time = 4
+	add_child(basic_enemy_timer)
+	basic_enemy_timer.start()
+	basic_enemy_timer.timeout.connect(_on_basic_enemy_timer_timeout)
+	tank_timer = Timer.new()
+	tank_timer.one_shot = false
+	add_child(tank_timer)
+	tank_timer.timeout.connect(_on_tank_timer_timeout)
 
 func _process(delta: float) -> void:
 	time_elapsed += delta
 	for stage in difficulty_stages:
 		if stage.end_time < time_elapsed:
-			spawn_interval = stage.enemy_spawn_speed
+			basic_enemy_timer.wait_time = stage.basic_enemy_spawn_interval
+			if stage.tank_enemy_spawn_interval > 0:
+				tank_timer.wait_time = stage.tank_enemy_spawn_interval
+				if tank_timer.is_stopped():
+					tank_timer.start()
 
-func _on_timer_timeout() -> void:
+func _on_basic_enemy_timer_timeout() -> void:
 	spawn_enemy()
-	timer.start(spawn_interval)
+
+func _on_tank_timer_timeout() -> void:
+	spawn_tank_enemy()
 
 func spawn_enemy():
 	var spawnpoint = spawnpoints.pick_random()
@@ -44,4 +64,5 @@ func spawn_tank_enemy():
 	enemy.global_position = spawnpoint.global_position
 
 func on_game_ended():
-	timer.stop()
+	basic_enemy_timer.stop()
+	tank_timer.stop()

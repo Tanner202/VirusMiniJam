@@ -59,7 +59,7 @@ position = Vector2(2291, -917)
 position = Vector2(2025, 1319)
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
-autostart = true
+wait_time = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -243,6 +243,5 @@ scale = Vector2(5.62031, 7.5516)
 texture = SubResource("CompressedTexture2D_wwl4e")
 centered = false
 
-[connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/GameUI/GameOverUI/Button" to="CanvasLayer/GameUI" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/GameOverUI/Button2" to="CanvasLayer/GameUI" method="_on_button_2_pressed"]
