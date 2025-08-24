@@ -13,8 +13,10 @@ var can_shoot := true
 var external_velocity = Vector2.ZERO
 var external_velocity_decay = 1000
 var external_velocity_magnitude_cap = 10000
+var downwards_drag = Vector2(0, 200)
 var hit_duration = 0.1
 
+var acceleration := 800
 var speed := 400
 
 func _physics_process(delta: float) -> void:
@@ -36,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click") and can_shoot:
 		shoot()
 	
-	velocity = direction * speed + external_velocity
+	velocity = velocity.move_toward(direction * speed + external_velocity + downwards_drag, acceleration * delta)
 	external_velocity = external_velocity.move_toward(Vector2.ZERO, external_velocity_decay * delta)
 	move_and_slide()
 	if direction != Vector2.ZERO:
