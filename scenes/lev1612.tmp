@@ -233,7 +233,6 @@ position = Vector2(0, 5216)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-1151, -4669)
 motion_mirroring = Vector2(0, 10000)
 script = ExtResource("17_ms3o8")
 
