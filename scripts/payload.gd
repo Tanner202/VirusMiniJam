@@ -10,7 +10,8 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		health.take_damage(1)
-		body.queue_free()
+		var enemy = body as Enemy
+		enemy.get_node("Health").take_damage(999)
 
 func on_health_changed(health):
 	var balloon_index = health - 1
