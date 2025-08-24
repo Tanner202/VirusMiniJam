@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=24 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
 [ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
@@ -24,6 +24,11 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wwl4e"]
 load_path = "res://.godot/imported/itchback.jpg-2a52390da1ba953ddba6fc5055224a1a.ctex"
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_efin6"]
+distance = 6.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cl81u"]
 
 [node name="Level" type="Node2D"]
 
@@ -242,6 +247,38 @@ z_index = -5
 scale = Vector2(5.62031, 7.5516)
 texture = SubResource("CompressedTexture2D_wwl4e")
 centered = false
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(0, 1013)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_efin6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundaries/StaticBody2D"]
+position = Vector2(0, -2031)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_efin6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundaries/StaticBody2D"]
+position = Vector2(1805, -1001)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_efin6")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Boundaries/StaticBody2D"]
+position = Vector2(-1795, -1001)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_efin6")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(0, -1016)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_cl81u")
 
 [connection signal="pressed" from="CanvasLayer/GameUI/GameOverUI/Button" to="CanvasLayer/GameUI" method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameUI/GameOverUI/Button2" to="CanvasLayer/GameUI" method="_on_button_2_pressed"]
