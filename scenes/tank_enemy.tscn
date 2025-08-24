@@ -19,7 +19,7 @@ knockback_force = 1750
 explosion_particle_prefab = ExtResource("2_taica")
 
 [node name="Health" parent="." instance=ExtResource("2_wdqmq")]
-health = 20
+max_health = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uosbp")

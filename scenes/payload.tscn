@@ -36,7 +36,7 @@ scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_7shr4")
 
 [node name="Health" parent="." instance=ExtResource("1_oy2ox")]
-health = 3
+max_health = 3
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 3

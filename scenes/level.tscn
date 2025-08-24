@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=21 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
 [ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
@@ -18,6 +18,8 @@
 [ext_resource type="AudioStream" uid="uid://dk1p5cnkc1sle" path="res://sounds/FailUSb2.wav" id="16_ktlnb"]
 [ext_resource type="Texture2D" uid="uid://c2bsu7tqn5fi" path="res://sprites/itchback.jpg" id="17_hdj5o"]
 [ext_resource type="Script" path="res://scripts/scrolling_background.gd" id="17_ms3o8"]
+[ext_resource type="Script" path="res://scripts/balloon_spawner.gd" id="19_coikg"]
+[ext_resource type="PackedScene" uid="uid://bw63rui2iy8n0" path="res://scenes/balloon.tscn" id="20_vlwcb"]
 
 [node name="Level" type="Node2D"]
 
@@ -166,5 +168,23 @@ position = Vector2(14, -5253)
 scale = Vector2(13.6805, 8.47593)
 texture = ExtResource("17_hdj5o")
 script = ExtResource("17_ms3o8")
+
+[node name="BalloonSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawnpoints", "payload")]
+script = ExtResource("19_coikg")
+spawnpoints = [NodePath("Spawnpoint 1"), NodePath("Spawnpoint 2"), NodePath("Spawnpoint 3"), NodePath("Spawnpoint 4")]
+balloon_prefab = ExtResource("20_vlwcb")
+payload = NodePath("../Payload")
+
+[node name="Spawnpoint 1" type="Node2D" parent="BalloonSpawner"]
+position = Vector2(-820, -314)
+
+[node name="Spawnpoint 2" type="Node2D" parent="BalloonSpawner"]
+position = Vector2(-584, 257)
+
+[node name="Spawnpoint 3" type="Node2D" parent="BalloonSpawner"]
+position = Vector2(413, -442)
+
+[node name="Spawnpoint 4" type="Node2D" parent="BalloonSpawner"]
+position = Vector2(535, 299)
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
