@@ -16,12 +16,14 @@
 [ext_resource type="Script" path="res://scripts/distance_traveled.gd" id="11_f60dc"]
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="12_l5v8a"]
 [ext_resource type="AudioStream" uid="uid://dk1p5cnkc1sle" path="res://sounds/FailUSb2.wav" id="16_ktlnb"]
-[ext_resource type="Texture2D" uid="uid://c2bsu7tqn5fi" path="res://sprites/itchback.jpg" id="17_hdj5o"]
 [ext_resource type="Script" path="res://scripts/scrolling_background.gd" id="17_ms3o8"]
 [ext_resource type="Script" path="res://scripts/balloon_spawner.gd" id="19_coikg"]
 [ext_resource type="PackedScene" uid="uid://bw63rui2iy8n0" path="res://scenes/balloon.tscn" id="20_vlwcb"]
 
 [sub_resource type="GDScript" id="GDScript_igxod"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wwl4e"]
+load_path = "res://.godot/imported/itchback.jpg-2a52390da1ba953ddba6fc5055224a1a.ctex"
 
 [node name="Level" type="Node2D"]
 
@@ -208,13 +210,6 @@ music = ExtResource("11_4ia60")
 script = ExtResource("12_l5v8a")
 lose_sound = ExtResource("16_ktlnb")
 
-[node name="ScrollingBackground" type="Sprite2D" parent="."]
-z_index = -5
-position = Vector2(-113, -5304)
-scale = Vector2(13.6805, 8.47593)
-texture = ExtResource("17_hdj5o")
-script = ExtResource("17_ms3o8")
-
 [node name="BalloonSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawnpoints", "payload")]
 script = ExtResource("19_coikg")
 spawnpoints = [NodePath("Spawnpoint 1"), NodePath("Spawnpoint 2"), NodePath("Spawnpoint 3"), NodePath("Spawnpoint 4")]
@@ -232,6 +227,28 @@ position = Vector2(413, -442)
 
 [node name="Spawnpoint 4" type="Node2D" parent="BalloonSpawner"]
 position = Vector2(535, 299)
+
+[node name="ScrollingBackground" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(1, -4672.32)
+scale = Vector2(3.5925, 4.82698)
+texture = SubResource("CompressedTexture2D_wwl4e")
+script = ExtResource("17_ms3o8")
+
+[node name="ScrollingBackground3" type="Sprite2D" parent="ScrollingBackground"]
+z_index = -5
+position = Vector2(0, 2196.26)
+scale = Vector2(1, 1)
+texture = SubResource("CompressedTexture2D_wwl4e")
+
+[node name="ScrollingBackground2" type="Sprite2D" parent="ScrollingBackground"]
+z_index = -5
+position = Vector2(0, -2195.09)
+scale = Vector2(1, 1)
+texture = SubResource("CompressedTexture2D_wwl4e")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 5216)
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/GameUI/GameOverUI/Button" to="CanvasLayer/GameUI" method="_on_button_pressed"]

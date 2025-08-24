@@ -20,6 +20,10 @@ config/icon="res://sprites/icon.svg"
 AudioManager="*res://scripts/audio_manager.gd"
 SceneTransition="*res://scenes/scene_transition.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 up={
