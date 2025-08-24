@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 @export var move_particle_prefab: PackedScene
 @onready var move_particle_position: Node2D = $MoveParticles
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 var firing_interval := 0.25
 var can_shoot := true
 var external_velocity = Vector2.ZERO
@@ -49,6 +50,7 @@ func _process(delta: float) -> void:
 	rotation_degrees -= 90
 
 func shoot():
+	audio_stream_player_2d.play()
 	var mouse_position = get_global_mouse_position()
 	var projectile = projectile_prefab.instantiate()
 	get_tree().root.add_child(projectile)

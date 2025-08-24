@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bb4mvmnor35yi"]
+[gd_scene load_steps=15 format=3 uid="uid://bb4mvmnor35yi"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ivysg"]
 [ext_resource type="PackedScene" uid="uid://bfq0nvirsci3v" path="res://scenes/projectile.tscn" id="2_3ig6o"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://0uk03sdrxcm" path="res://scenes/move_particle.tscn" id="4_1etri"]
 [ext_resource type="Texture2D" uid="uid://cpayoxgrrlh71" path="res://sprites/itchplayerhurt.png" id="5_xyfll"]
 [ext_resource type="Texture2D" uid="uid://mo6rth57cg7" path="res://sprites/itchpart.png" id="8_dgmv4"]
+[ext_resource type="AudioStream" uid="uid://bblsb4fjxbicl" path="res://sounds/lasergun2.wav" id="9_fe85c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_32xag"]
 radius = 88.45
@@ -81,3 +82,6 @@ position = Vector2(0, 62)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_bbab8")
 texture = ExtResource("8_dgmv4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_fe85c")
