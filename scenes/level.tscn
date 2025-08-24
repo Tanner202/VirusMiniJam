@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=13 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
 [ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
@@ -9,12 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://bclnw5n8awomh" path="res://sprites/itchgameover.png" id="7_3b004"]
 [ext_resource type="Script" path="res://scripts/game_over_ui.gd" id="8_80uab"]
 [ext_resource type="Texture2D" uid="uid://dvhaqwby2y0lg" path="res://sprites/itchwin2.png" id="9_uo6hk"]
+[ext_resource type="Script" path="res://scripts/music_player.gd" id="10_2of1h"]
+[ext_resource type="AudioStream" uid="uid://37l8gj73uqtc" path="res://sounds/USB1sample.wav" id="11_4ia60"]
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="12_l5v8a"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ge1hc")]
 
-[node name="Payload" parent="." instance=ExtResource("2_t1c6u")]
+[node name="Payload" parent="." node_paths=PackedStringArray("level_manager") instance=ExtResource("2_t1c6u")]
+level_manager = NodePath("../LevelManager")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -45,7 +49,7 @@ autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("level_manager")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -60,6 +64,7 @@ size_flags_vertical = 4
 max_value = 1.0
 show_percentage = false
 script = ExtResource("5_vi4ew")
+level_manager = NodePath("../../LevelManager")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 5
@@ -73,7 +78,7 @@ grow_horizontal = 2
 texture = ExtResource("5_5t7n8")
 expand_mode = 3
 
-[node name="GameUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("victory_image", "game_over_image")]
+[node name="GameUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("level_manager", "victory_image", "game_over_image")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,6 +86,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_80uab")
+level_manager = NodePath("../../LevelManager")
 victory_image = NodePath("VictoryImage")
 game_over_image = NodePath("GameOverImage")
 
@@ -115,5 +121,12 @@ offset_bottom = 113.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_3b004")
+
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource("10_2of1h")
+music = ExtResource("11_4ia60")
+
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("12_l5v8a")
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

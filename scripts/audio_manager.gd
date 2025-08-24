@@ -1,10 +1,13 @@
 extends Node
 
 var ui_audio_stream: AudioStreamPlayer
+var music_stream: AudioStreamPlayer
 
 func _ready() -> void:
 	ui_audio_stream = AudioStreamPlayer.new()
+	music_stream = AudioStreamPlayer.new()
 	add_child(ui_audio_stream)
+	add_child(music_stream)
 
 func play_ui_sound(sound: AudioStream):
 	ui_audio_stream.stream = sound
@@ -17,3 +20,7 @@ func play_sound_effect(sound: AudioStream):
 	sound_effect_player.play()
 	await sound_effect_player.finished
 	sound_effect_player.queue_free()
+
+func set_music(music: AudioStream):
+	music_stream.stream = music
+	music_stream.play()

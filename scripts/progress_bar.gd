@@ -1,4 +1,6 @@
 extends ProgressBar
 
+@export var level_manager: LevelManager
+
 func _process(delta: float) -> void:
-	value = GameManager.get_percentage_complete()
+	value = level_manager.get_percentage_complete()

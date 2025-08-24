@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var level_manager: LevelManager
 @onready var health: Health = $Health
 @export var health_sprites: Array[Sprite2D]
 
@@ -15,4 +16,4 @@ func on_health_changed(health):
 	var balloon_index = health - 1
 	health_sprites[balloon_index].hide()
 	if health <= 0:
-		GameManager.game_over()
+		level_manager.game_over()
