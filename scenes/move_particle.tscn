@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://0uk03sdrxcm"]
+
+[ext_resource type="Texture2D" uid="uid://mo6rth57cg7" path="res://sprites/itchpart.png" id="1_28s8q"]
+[ext_resource type="Script" path="res://scripts/hit_particle.gd" id="2_jdpv8"]
+
+[node name="HitParticle" type="Sprite2D"]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_28s8q")
+script = ExtResource("2_jdpv8")
+time_alive = 1.0
+scale_increase_amount = -0.25

@@ -1,7 +1,7 @@
 class_name HitParticle extends Sprite2D
 
-var time_alive = 0.05
-var scale_increase_amount = 10
+@export var time_alive = 0.05
+@export var scale_increase_amount: float = 10
 
 func _ready() -> void:
 	await get_tree().create_timer(time_alive).timeout

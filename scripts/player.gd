@@ -4,6 +4,9 @@ class_name Player extends CharacterBody2D
 @export var shooting_point: Node2D
 @export var ship_sprite: AnimatedSprite2D
 @export var hit_particle_prefab: PackedScene
+@export var move_particle_prefab: PackedScene
+@onready var move_particle_position: Node2D = $MoveParticles
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 var firing_interval := 0.25
 var can_shoot := true
 var external_velocity = Vector2.ZERO
@@ -35,6 +38,10 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed + external_velocity
 	external_velocity = external_velocity.move_toward(Vector2.ZERO, external_velocity_decay * delta)
 	move_and_slide()
+	if direction != Vector2.ZERO:
+		gpu_particles_2d.emitting = true
+	else:
+		gpu_particles_2d.emitting = false
 
 func _process(delta: float) -> void:
 	var mouse_direction = (global_position - get_global_mouse_position()).normalized()
