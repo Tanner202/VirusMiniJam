@@ -33,7 +33,7 @@ load_path = "res://.godot/imported/itchback.jpg-2a52390da1ba953ddba6fc5055224a1a
 level_manager = NodePath("../LevelManager")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.32, 0.32)
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("spawnpoints", "enemy_target", "level_manager")]
 script = ExtResource("4_v4agu")
@@ -44,19 +44,19 @@ enemy_target = NodePath("../Payload")
 level_manager = NodePath("../LevelManager")
 
 [node name="Spawnpoint1" type="Node2D" parent="EnemySpawner"]
-position = Vector2(-1420, 944)
+position = Vector2(-2404, 1313)
 
 [node name="Spawnpoint2" type="Node2D" parent="EnemySpawner"]
-position = Vector2(-1491, -322)
+position = Vector2(-2447, -1347)
 
 [node name="Spawnpoint3" type="Node2D" parent="EnemySpawner"]
-position = Vector2(25, -827)
+position = Vector2(-3, -1602)
 
 [node name="Spawnpoint4" type="Node2D" parent="EnemySpawner"]
-position = Vector2(1512, -141)
+position = Vector2(2291, -917)
 
 [node name="Spawnpoint5" type="Node2D" parent="EnemySpawner"]
-position = Vector2(267, 1043)
+position = Vector2(2025, 1319)
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 autostart = true
@@ -216,16 +216,16 @@ balloon_prefab = ExtResource("20_vlwcb")
 payload = NodePath("../Payload")
 
 [node name="Spawnpoint 1" type="Node2D" parent="BalloonSpawner"]
-position = Vector2(-820, -314)
+position = Vector2(-952, -458)
 
 [node name="Spawnpoint 2" type="Node2D" parent="BalloonSpawner"]
-position = Vector2(-584, 257)
+position = Vector2(-788, 449)
 
 [node name="Spawnpoint 3" type="Node2D" parent="BalloonSpawner"]
-position = Vector2(413, -442)
+position = Vector2(641, -550)
 
 [node name="Spawnpoint 4" type="Node2D" parent="BalloonSpawner"]
-position = Vector2(535, 299)
+position = Vector2(667, 491)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(0, 5216)
@@ -233,14 +233,13 @@ position = Vector2(0, 5216)
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-1151, -4669)
-motion_mirroring = Vector2(0, 10000)
+position = Vector2(-1800, -30942)
+motion_mirroring = Vector2(0, 16000)
 script = ExtResource("17_ms3o8")
 
 [node name="ScrollingBackground" type="Sprite2D" parent="ParallaxBackground/Background"]
 z_index = -5
-position = Vector2(1, -4672.32)
-scale = Vector2(3.5925, 4.82698)
+scale = Vector2(5.62031, 7.5516)
 texture = SubResource("CompressedTexture2D_wwl4e")
 centered = false
 
