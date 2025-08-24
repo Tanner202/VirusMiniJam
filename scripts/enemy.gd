@@ -1,8 +1,8 @@
 class_name Enemy extends Node2D
 
 var target: Node2D
-var speed := 200
-var knockback_force := 1250
+@export var speed := 200
+@export var knockback_force := 1250
 @export var explosion_particle_prefab: PackedScene
 @onready var health: Health = $Health
 

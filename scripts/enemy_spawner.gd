@@ -2,6 +2,7 @@ extends Node
 
 @onready var timer: Timer = $Timer
 @export var enemy_prefab: PackedScene
+@export var tank_enemy_prefab: PackedScene
 @export var spawnpoints: Array[Node2D]
 @export var enemy_target: Node2D
 var time_elapsed: float
@@ -13,6 +14,12 @@ var difficulty_stages: Array[DifficultyStage] = [
 	DifficultyStage.new(35, 1.5)
 ]
 var spawn_interval = 4
+
+func _ready() -> void:
+	await get_tree().create_timer(22).timeout
+	spawn_tank_enemy()
+	await get_tree().create_timer(8).timeout
+	spawn_tank_enemy()
 
 func _process(delta: float) -> void:
 	time_elapsed += delta
@@ -27,6 +34,13 @@ func _on_timer_timeout() -> void:
 func spawn_enemy():
 	var spawnpoint = spawnpoints.pick_random()
 	var enemy = enemy_prefab.instantiate() as Enemy
+	enemy.target = enemy_target
+	get_tree().root.add_child(enemy)
+	enemy.global_position = spawnpoint.global_position
+
+func spawn_tank_enemy():
+	var spawnpoint = spawnpoints.pick_random()
+	var enemy = tank_enemy_prefab.instantiate() as Enemy
 	enemy.target = enemy_target
 	get_tree().root.add_child(enemy)
 	enemy.global_position = spawnpoint.global_position
