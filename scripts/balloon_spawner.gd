@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func on_timer_timeout():
 	var balloon = balloon_prefab.instantiate()
-	get_tree().root.add_child(balloon)
+	get_tree().current_scene.add_child(balloon)
 	balloon.global_position = spawnpoints.pick_random().global_position
 	balloon.set_target(payload)
 	timer.start()

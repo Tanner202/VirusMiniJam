@@ -8,3 +8,9 @@ func change_scene(target: PackedScene) -> void:
 	await animation_player.animation_finished
 	get_tree().change_scene_to_packed(target)
 	animation_player.play_backwards("dissolve")
+
+func change_scene_file(file) -> void:
+	animation_player.play("dissolve")
+	await animation_player.animation_finished
+	get_tree().change_scene_to_file(file)
+	animation_player.play_backwards("dissolve")

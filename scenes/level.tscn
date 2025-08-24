@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=22 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
 [ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
@@ -7,19 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://c6lnjuynd2f23" path="res://sprites/itchgoal.png" id="5_5t7n8"]
 [ext_resource type="Texture2D" uid="uid://dwsgvd8a6dwgw" path="res://sprites/itchframe2.png" id="5_ifyce"]
 [ext_resource type="PackedScene" uid="uid://cwtn3yhj57u4j" path="res://scenes/tank_enemy.tscn" id="5_oyjqb"]
-[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="5_vi4ew"]
 [ext_resource type="Texture2D" uid="uid://bclnw5n8awomh" path="res://sprites/itchgameover.png" id="7_3b004"]
 [ext_resource type="Script" path="res://scripts/game_over_ui.gd" id="8_80uab"]
+[ext_resource type="PackedScene" uid="uid://3cojvdnf5j0n" path="res://scenes/title_screen.tscn" id="9_olrqg"]
 [ext_resource type="Texture2D" uid="uid://dvhaqwby2y0lg" path="res://sprites/itchwin2.png" id="9_uo6hk"]
 [ext_resource type="Script" path="res://scripts/music_player.gd" id="10_2of1h"]
 [ext_resource type="AudioStream" uid="uid://37l8gj73uqtc" path="res://sounds/USB1sample.wav" id="11_4ia60"]
+[ext_resource type="Script" path="res://scripts/distance_traveled.gd" id="11_f60dc"]
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="12_l5v8a"]
-[ext_resource type="AudioStream" uid="uid://dcuvnacqxv7gu" path="res://sounds/Victory.wav" id="15_xl11k"]
 [ext_resource type="AudioStream" uid="uid://dk1p5cnkc1sle" path="res://sounds/FailUSb2.wav" id="16_ktlnb"]
 [ext_resource type="Texture2D" uid="uid://c2bsu7tqn5fi" path="res://sprites/itchback.jpg" id="17_hdj5o"]
 [ext_resource type="Script" path="res://scripts/scrolling_background.gd" id="17_ms3o8"]
 [ext_resource type="Script" path="res://scripts/balloon_spawner.gd" id="19_coikg"]
 [ext_resource type="PackedScene" uid="uid://bw63rui2iy8n0" path="res://scenes/balloon.tscn" id="20_vlwcb"]
+
+[sub_resource type="GDScript" id="GDScript_igxod"]
 
 [node name="Level" type="Node2D"]
 
@@ -31,12 +33,13 @@ level_manager = NodePath("../LevelManager")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
-[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("spawnpoints", "enemy_target")]
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("spawnpoints", "enemy_target", "level_manager")]
 script = ExtResource("4_v4agu")
 enemy_prefab = ExtResource("3_sg62g")
 tank_enemy_prefab = ExtResource("5_oyjqb")
 spawnpoints = [NodePath("Spawnpoint1"), NodePath("Spawnpoint2"), NodePath("Spawnpoint3"), NodePath("Spawnpoint4"), NodePath("Spawnpoint5")]
 enemy_target = NodePath("../Payload")
+level_manager = NodePath("../LevelManager")
 
 [node name="Spawnpoint1" type="Node2D" parent="EnemySpawner"]
 position = Vector2(-1420, 944)
@@ -59,6 +62,7 @@ autostart = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.0251736
 anchor_top = 0.297839
@@ -75,7 +79,7 @@ expand_mode = 5
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/TextureRect2" node_paths=PackedStringArray("level_manager")]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/TextureRect2"]
 z_index = -1
 layout_mode = 1
 anchors_preset = 5
@@ -92,10 +96,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 max_value = 1.0
 show_percentage = false
-script = ExtResource("5_vi4ew")
-level_manager = NodePath("../../../LevelManager")
+script = SubResource("GDScript_igxod")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = -1
 anchor_left = -0.0399306
 anchor_top = 0.128086
@@ -109,7 +113,7 @@ texture = ExtResource("5_5t7n8")
 expand_mode = 3
 stretch_mode = 4
 
-[node name="GameUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("level_manager", "victory_image", "game_over_image")]
+[node name="GameUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("level_manager", "game_over_ui")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,9 +121,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_80uab")
+scene = null
+main_menu = ExtResource("9_olrqg")
 level_manager = NodePath("../../LevelManager")
-victory_image = NodePath("VictoryImage")
-game_over_image = NodePath("GameOverImage")
+game_over_ui = NodePath("GameOverUI")
 
 [node name="VictoryImage" type="TextureRect" parent="CanvasLayer/GameUI"]
 visible = false
@@ -137,21 +142,63 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_uo6hk")
 
-[node name="GameOverImage" type="TextureRect" parent="CanvasLayer/GameUI"]
+[node name="GameOverUI" type="Control" parent="CanvasLayer/GameUI"]
+process_mode = 3
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOverImage" type="TextureRect" parent="CanvasLayer/GameUI/GameOverUI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -283.5
-offset_top = -113.0
-offset_right = 283.5
-offset_bottom = 113.0
+offset_left = 272.5
+offset_top = 191.0
+offset_right = 839.5
+offset_bottom = 417.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_3b004")
+
+[node name="DistanceTraveledResult" type="RichTextLabel" parent="CanvasLayer/GameUI/GameOverUI"]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 458.0
+offset_right = 767.0
+offset_bottom = 511.0
+text = "Distance Traveled:"
+fit_content = true
+
+[node name="Button" type="Button" parent="CanvasLayer/GameUI/GameOverUI"]
+process_mode = 3
+layout_mode = 0
+offset_left = 437.0
+offset_top = 518.0
+offset_right = 525.0
+offset_bottom = 549.0
+text = "Play Again"
+
+[node name="Button2" type="Button" parent="CanvasLayer/GameUI/GameOverUI"]
+process_mode = 3
+layout_mode = 0
+offset_left = 602.0
+offset_top = 518.0
+offset_right = 690.0
+offset_bottom = 549.0
+text = "Menu"
+
+[node name="DistanceTraveled" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 23.0
+offset_top = 11.0
+offset_right = 254.0
+offset_bottom = 112.0
+theme_override_font_sizes/normal_font_size = 25
+text = "Distance Traveled: 0"
+script = ExtResource("11_f60dc")
 
 [node name="MusicPlayer" type="Node" parent="."]
 script = ExtResource("10_2of1h")
@@ -159,12 +206,11 @@ music = ExtResource("11_4ia60")
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("12_l5v8a")
-win_sound = ExtResource("15_xl11k")
 lose_sound = ExtResource("16_ktlnb")
 
 [node name="ScrollingBackground" type="Sprite2D" parent="."]
 z_index = -5
-position = Vector2(14, -5253)
+position = Vector2(-113, -5304)
 scale = Vector2(13.6805, 8.47593)
 texture = ExtResource("17_hdj5o")
 script = ExtResource("17_ms3o8")
@@ -188,3 +234,5 @@ position = Vector2(413, -442)
 position = Vector2(535, 299)
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/GameUI/GameOverUI/Button" to="CanvasLayer/GameUI" method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/GameUI/GameOverUI/Button2" to="CanvasLayer/GameUI" method="_on_button_2_pressed"]

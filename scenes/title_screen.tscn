@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://3cojvdnf5j0n"]
+[gd_scene load_steps=12 format=3 uid="uid://3cojvdnf5j0n"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_2t76y"]
 [ext_resource type="Script" path="res://scripts/button_sounds.gd" id="1_t1voc"]
 [ext_resource type="Texture2D" uid="uid://bo6yopf68hej4" path="res://sprites/itchtitle.jpg" id="1_yxt4o"]
-[ext_resource type="PackedScene" uid="uid://bdelka6xtni01" path="res://scenes/level.tscn" id="2_i8agi"]
 [ext_resource type="AudioStream" uid="uid://cpvlolrqme4oh" path="res://sounds/Menu_1.wav" id="3_hc7u0"]
 [ext_resource type="Script" path="res://scripts/control_screen.gd" id="3_ki6so"]
 [ext_resource type="Texture2D" uid="uid://dlowwfoj00dft" path="res://sprites/itchcontrols.jpg" id="4_0gahg"]
@@ -95,7 +94,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_uui7m")
-game_scene = ExtResource("2_i8agi")
 
 [node name="LoreImage" type="TextureRect" parent="LoreScreen"]
 layout_mode = 1
