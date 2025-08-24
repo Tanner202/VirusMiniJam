@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://3cojvdnf5j0n"]
+[gd_scene load_steps=13 format=3 uid="uid://3cojvdnf5j0n"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_2t76y"]
 [ext_resource type="Script" path="res://scripts/button_sounds.gd" id="1_t1voc"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dxoclb658tccd" path="res://sprites/itchplot.jpg" id="5_d1l4e"]
 [ext_resource type="AudioStream" uid="uid://c0vvb81aadj1a" path="res://sounds/MenuSeek_1.wav" id="5_p7l5t"]
 [ext_resource type="Script" path="res://scripts/lore_screen.gd" id="5_uui7m"]
+[ext_resource type="Script" path="res://scripts/music_player.gd" id="11_h40nx"]
+[ext_resource type="AudioStream" uid="uid://s0jnvlmt4j1s" path="res://sounds/USBMENU.wav" id="12_bg7fk"]
 
 [node name="TitleScreen" type="CanvasLayer"]
 
@@ -130,6 +132,10 @@ offset_top = -3.05176e-05
 grow_vertical = 0
 flat = true
 metadata/_edit_use_anchors_ = true
+
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource("11_h40nx")
+music = ExtResource("12_bg7fk")
 
 [connection signal="mouse_entered" from="ControlScreen/StartButton" to="ControlScreen" method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="ControlScreen/StartButton" to="ControlScreen" method="_on_start_button_pressed"]
