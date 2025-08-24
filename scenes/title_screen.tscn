@@ -1,14 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://3cojvdnf5j0n"]
+[gd_scene load_steps=11 format=3 uid="uid://3cojvdnf5j0n"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_2t76y"]
+[ext_resource type="Script" path="res://scripts/button_sounds.gd" id="1_t1voc"]
 [ext_resource type="Texture2D" uid="uid://bo6yopf68hej4" path="res://sprites/itchtitle.jpg" id="1_yxt4o"]
 [ext_resource type="PackedScene" uid="uid://bdelka6xtni01" path="res://scenes/level.tscn" id="2_i8agi"]
+[ext_resource type="AudioStream" uid="uid://cpvlolrqme4oh" path="res://sounds/Menu_1.wav" id="3_hc7u0"]
 [ext_resource type="Script" path="res://scripts/control_screen.gd" id="3_ki6so"]
 [ext_resource type="Texture2D" uid="uid://dlowwfoj00dft" path="res://sprites/itchcontrols.jpg" id="4_0gahg"]
 [ext_resource type="Texture2D" uid="uid://dxoclb658tccd" path="res://sprites/itchplot.jpg" id="5_d1l4e"]
+[ext_resource type="AudioStream" uid="uid://c0vvb81aadj1a" path="res://sounds/MenuSeek_1.wav" id="5_p7l5t"]
 [ext_resource type="Script" path="res://scripts/lore_screen.gd" id="5_uui7m"]
 
 [node name="TitleScreen" type="CanvasLayer"]
+
+[node name="ButtonSounds" type="Node" parent="."]
+script = ExtResource("1_t1voc")
+hover_sound = ExtResource("5_p7l5t")
+click_sound = ExtResource("3_hc7u0")
 
 [node name="TitleScreen" type="Control" parent="." node_paths=PackedStringArray("control_screen")]
 layout_mode = 3
@@ -52,7 +60,7 @@ grow_vertical = 2
 texture = ExtResource("4_0gahg")
 expand_mode = 3
 
-[node name="StartButton" type="Button" parent="ControlScreen"]
+[node name="StartButton" type="Button" parent="ControlScreen" groups=["UIButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.821181
@@ -64,7 +72,7 @@ grow_vertical = 0
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="QuitButton" type="Button" parent="ControlScreen"]
+[node name="QuitButton" type="Button" parent="ControlScreen" groups=["UIButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.588542
@@ -98,7 +106,7 @@ grow_vertical = 2
 texture = ExtResource("5_d1l4e")
 expand_mode = 3
 
-[node name="StartButton" type="Button" parent="LoreScreen"]
+[node name="StartButton" type="Button" parent="LoreScreen" groups=["UIButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.594618
@@ -111,7 +119,7 @@ pivot_offset = Vector2(-189, -24)
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="QuitButton" type="Button" parent="LoreScreen"]
+[node name="QuitButton" type="Button" parent="LoreScreen" groups=["UIButtons"]]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.151042
@@ -123,6 +131,7 @@ grow_vertical = 0
 flat = true
 metadata/_edit_use_anchors_ = true
 
+[connection signal="mouse_entered" from="ControlScreen/StartButton" to="ControlScreen" method="_on_start_button_mouse_entered"]
 [connection signal="pressed" from="ControlScreen/StartButton" to="ControlScreen" method="_on_start_button_pressed"]
 [connection signal="pressed" from="ControlScreen/QuitButton" to="ControlScreen" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="LoreScreen/StartButton" to="LoreScreen" method="_on_start_button_pressed"]
