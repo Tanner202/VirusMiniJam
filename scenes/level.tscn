@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=14 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
 [ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
 [ext_resource type="PackedScene" uid="uid://cwtn3yhj57u4j" path="res://scenes/enemy.tscn" id="3_sg62g"]
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="4_v4agu"]
 [ext_resource type="Texture2D" uid="uid://c6lnjuynd2f23" path="res://sprites/itchgoal.png" id="5_5t7n8"]
+[ext_resource type="Texture2D" uid="uid://dwsgvd8a6dwgw" path="res://sprites/itchframe2.png" id="5_ifyce"]
 [ext_resource type="Script" path="res://scripts/progress_bar.gd" id="5_vi4ew"]
 [ext_resource type="Texture2D" uid="uid://bclnw5n8awomh" path="res://sprites/itchgameover.png" id="7_3b004"]
 [ext_resource type="Script" path="res://scripts/game_over_ui.gd" id="8_80uab"]
@@ -49,34 +50,56 @@ autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("level_manager")]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.0251736
+anchor_top = 0.297839
+anchor_right = 0.0958767
+anchor_bottom = 0.297839
+offset_top = 362.0
+offset_right = 280.55
+offset_bottom = 443.45
+rotation = -1.5708
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("5_ifyce")
+expand_mode = 5
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/TextureRect2" node_paths=PackedStringArray("level_manager")]
+z_index = -1
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -169.0
-offset_top = 32.0
-offset_right = 169.0
-offset_bottom = 59.0
+offset_left = -173.0
+offset_top = 36.0
+offset_right = 415.0
+offset_bottom = 76.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(51, -4)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 max_value = 1.0
 show_percentage = false
 script = ExtResource("5_vi4ew")
-level_manager = NodePath("../../LevelManager")
+level_manager = NodePath("../../../LevelManager")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 148.0
-offset_top = -41.0
-offset_right = 351.0
-offset_bottom = 148.0
-grow_horizontal = 2
+anchors_preset = -1
+anchor_left = -0.0399306
+anchor_top = 0.128086
+anchor_right = 0.136285
+anchor_bottom = 0.419753
+offset_left = 18.0
+offset_right = 18.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
 texture = ExtResource("5_5t7n8")
 expand_mode = 3
+stretch_mode = 4
 
 [node name="GameUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("level_manager", "victory_image", "game_over_image")]
 layout_mode = 3
