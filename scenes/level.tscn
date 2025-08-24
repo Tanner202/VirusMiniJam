@@ -42,7 +42,7 @@ zoom = Vector2(0.32, 0.32)
 script = ExtResource("4_v4agu")
 enemy_prefab = ExtResource("3_sg62g")
 tank_enemy_prefab = ExtResource("5_oyjqb")
-spawnpoints = [NodePath("Spawnpoint1"), NodePath("Spawnpoint2"), NodePath("Spawnpoint3"), NodePath("Spawnpoint4"), NodePath("Spawnpoint5")]
+spawnpoints = [NodePath("Spawnpoint1"), NodePath("Spawnpoint2"), NodePath("Spawnpoint3"), NodePath("Spawnpoint4"), NodePath("Spawnpoint5"), NodePath("Spawnpoint6"), NodePath("Spawnpoint7"), NodePath("Spawnpoint8"), NodePath("Spawnpoint9"), NodePath("Spawnpoint10"), NodePath("Spawnpoint11")]
 enemy_target = NodePath("../Payload")
 level_manager = NodePath("../LevelManager")
 
@@ -60,6 +60,24 @@ position = Vector2(2291, -917)
 
 [node name="Spawnpoint5" type="Node2D" parent="EnemySpawner"]
 position = Vector2(2025, 1319)
+
+[node name="Spawnpoint6" type="Node2D" parent="EnemySpawner"]
+position = Vector2(160, 1424)
+
+[node name="Spawnpoint7" type="Node2D" parent="EnemySpawner"]
+position = Vector2(-1115, 1405)
+
+[node name="Spawnpoint8" type="Node2D" parent="EnemySpawner"]
+position = Vector2(-2666, -60)
+
+[node name="Spawnpoint9" type="Node2D" parent="EnemySpawner"]
+position = Vector2(1377, -1525)
+
+[node name="Spawnpoint10" type="Node2D" parent="EnemySpawner"]
+position = Vector2(-1344, -1601)
+
+[node name="Spawnpoint11" type="Node2D" parent="EnemySpawner"]
+position = Vector2(2519, 216)
 
 [node name="Timer" type="Timer" parent="EnemySpawner"]
 wait_time = 10.0
@@ -169,6 +187,7 @@ grow_vertical = 2
 texture = ExtResource("7_3b004")
 
 [node name="DistanceTraveledResult" type="RichTextLabel" parent="CanvasLayer/GameUI/GameOverUI"]
+modulate = Color(0.4, 1, 0.6, 1)
 layout_mode = 0
 offset_left = 414.0
 offset_top = 458.0
@@ -179,6 +198,7 @@ fit_content = true
 
 [node name="Button" type="Button" parent="CanvasLayer/GameUI/GameOverUI"]
 process_mode = 3
+modulate = Color(0.4, 1, 0.6, 1)
 layout_mode = 0
 offset_left = 437.0
 offset_top = 518.0
@@ -188,6 +208,7 @@ text = "Play Again"
 
 [node name="Button2" type="Button" parent="CanvasLayer/GameUI/GameOverUI"]
 process_mode = 3
+modulate = Color(0.4, 1, 0.6, 1)
 layout_mode = 0
 offset_left = 602.0
 offset_top = 518.0
@@ -196,6 +217,7 @@ offset_bottom = 549.0
 text = "Menu"
 
 [node name="DistanceTraveled" type="RichTextLabel" parent="CanvasLayer"]
+modulate = Color(0.4, 1, 0.6, 1)
 offset_left = 23.0
 offset_top = 11.0
 offset_right = 254.0
@@ -214,7 +236,7 @@ lose_sound = ExtResource("16_ktlnb")
 
 [node name="BalloonSpawner" type="Node2D" parent="." node_paths=PackedStringArray("spawnpoints", "payload")]
 script = ExtResource("19_coikg")
-spawnpoints = [NodePath("Spawnpoint 1"), NodePath("Spawnpoint 2"), NodePath("Spawnpoint 3"), NodePath("Spawnpoint 4")]
+spawnpoints = [NodePath("Spawnpoint 1"), NodePath("Spawnpoint 2"), NodePath("Spawnpoint 3"), NodePath("Spawnpoint 4"), NodePath("Spawnpoint 5"), NodePath("Spawnpoint 6"), NodePath("Spawnpoint 7")]
 balloon_prefab = ExtResource("20_vlwcb")
 payload = NodePath("../Payload")
 
@@ -229,6 +251,15 @@ position = Vector2(641, -550)
 
 [node name="Spawnpoint 4" type="Node2D" parent="BalloonSpawner"]
 position = Vector2(667, 491)
+
+[node name="Spawnpoint 5" type="Node2D" parent="BalloonSpawner"]
+position = Vector2(-85, 662)
+
+[node name="Spawnpoint 6" type="Node2D" parent="BalloonSpawner"]
+position = Vector2(1209, 224)
+
+[node name="Spawnpoint 7" type="Node2D" parent="BalloonSpawner"]
+position = Vector2(-1569, 138)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(0, 5216)

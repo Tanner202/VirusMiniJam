@@ -11,14 +11,14 @@ var time_elapsed: float
 var difficulty_stages: Array[DifficultyStage] = [
 	DifficultyStage.new(10, 3.5, 0),
 	DifficultyStage.new(20, 2.5, 0),
-	DifficultyStage.new(30, 2, 12),
-	DifficultyStage.new(40, 1.9, 10),
-	DifficultyStage.new(50, 1.8, 8),
-	DifficultyStage.new(80, 1.75, 7),
-	DifficultyStage.new(120, 1.65, 6.5),
-	DifficultyStage.new(180, 1.55, 6),
+	DifficultyStage.new(30, 2.25, 12),
+	DifficultyStage.new(40, 2, 10),
+	DifficultyStage.new(80, 1.8, 8),
+	DifficultyStage.new(120, 1.75, 7),
+	DifficultyStage.new(180, 1.65, 6),
 	DifficultyStage.new(240, 8, 2)
 ]
+var game_ended = false
 
 func _ready() -> void:
 	level_manager.game_ended.connect(on_game_ended)
@@ -50,6 +50,9 @@ func _on_tank_timer_timeout() -> void:
 	spawn_tank_enemy()
 
 func spawn_enemy():
+	if game_ended:
+		return
+	
 	var spawnpoint = spawnpoints.pick_random()
 	var enemy = enemy_prefab.instantiate() as Enemy
 	enemy.target = enemy_target
@@ -57,6 +60,9 @@ func spawn_enemy():
 	enemy.global_position = spawnpoint.global_position
 
 func spawn_tank_enemy():
+	if game_ended:
+		return
+	
 	var spawnpoint = spawnpoints.pick_random()
 	var enemy = tank_enemy_prefab.instantiate() as Enemy
 	enemy.target = enemy_target
@@ -66,3 +72,4 @@ func spawn_tank_enemy():
 func on_game_ended():
 	basic_enemy_timer.stop()
 	tank_timer.stop()
+	game_ended = true

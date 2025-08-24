@@ -3,7 +3,7 @@ extends Node2D
 @export var spawnpoints: Array[Node2D]
 @export var balloon_prefab: PackedScene
 @export var payload: Node2D
-var spawn_delay = 5
+var spawn_delay = 10
 var timer
 
 func _ready() -> void:

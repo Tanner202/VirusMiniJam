@@ -4,6 +4,11 @@ extends Node2D
 var speed := 1000
 var direction: Vector2
 var damage := 3
+var lifetime = 10
+
+func _ready() -> void:
+	await get_tree().create_timer(lifetime).timeout
+	queue_free()
 
 func _process(delta: float) -> void:
 	global_position += direction * speed * delta
@@ -13,6 +18,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var health = body.get_node("Health") as Health
 		health.take_damage(damage)
 	var hit_particle = hit_particle_prefab.instantiate()
-	get_tree().root.add_child(hit_particle)
+	get_tree().current_scene.add_child(hit_particle)
 	hit_particle.global_position = global_position
 	queue_free()
