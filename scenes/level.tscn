@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdelka6xtni01"]
+[gd_scene load_steps=17 format=3 uid="uid://bdelka6xtni01"]
 
 [ext_resource type="PackedScene" uid="uid://bb4mvmnor35yi" path="res://scenes/player.tscn" id="1_ge1hc"]
 [ext_resource type="PackedScene" uid="uid://chhyk05c5d8ig" path="res://scenes/payload.tscn" id="2_t1c6u"]
@@ -14,8 +14,10 @@
 [ext_resource type="Script" path="res://scripts/music_player.gd" id="10_2of1h"]
 [ext_resource type="AudioStream" uid="uid://37l8gj73uqtc" path="res://sounds/USB1sample.wav" id="11_4ia60"]
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="12_l5v8a"]
+[ext_resource type="AudioStream" uid="uid://dcuvnacqxv7gu" path="res://sounds/Victory.wav" id="15_xl11k"]
+[ext_resource type="AudioStream" uid="uid://dk1p5cnkc1sle" path="res://sounds/FailUSb2.wav" id="16_ktlnb"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Level" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ge1hc")]
 
@@ -153,5 +155,7 @@ music = ExtResource("11_4ia60")
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("12_l5v8a")
+win_sound = ExtResource("15_xl11k")
+lose_sound = ExtResource("16_ktlnb")
 
 [connection signal="timeout" from="EnemySpawner/Timer" to="EnemySpawner" method="_on_timer_timeout"]

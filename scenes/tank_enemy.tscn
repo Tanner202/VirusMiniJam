@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwtn3yhj57u4j"]
+[gd_scene load_steps=7 format=3 uid="uid://cwtn3yhj57u4j"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_xxp87"]
 [ext_resource type="PackedScene" uid="uid://d16xdi15ar5jr" path="res://scenes/explosion_particles.tscn" id="2_taica"]
+[ext_resource type="AudioStream" uid="uid://d4m37rurc5ovp" path="res://sounds/Explosion1.wav" id="2_viyst"]
 [ext_resource type="PackedScene" uid="uid://8g7xvprl3522" path="res://scenes/health.tscn" id="2_wdqmq"]
 [ext_resource type="Texture2D" uid="uid://cp6oops224wyr" path="res://sprites/itchenemy3.png" id="4_1fu4r"]
 
@@ -12,6 +13,7 @@ radius = 186.424
 position = Vector2(-916, -435)
 collision_layer = 2
 script = ExtResource("1_xxp87")
+explosion_sfx = ExtResource("2_viyst")
 speed = 100
 knockback_force = 1750
 explosion_particle_prefab = ExtResource("2_taica")

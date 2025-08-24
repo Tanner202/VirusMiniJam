@@ -1,6 +1,7 @@
 class_name Enemy extends Node2D
 
 var target: Node2D
+@export var explosion_sfx: AudioStream
 @export var speed := 200
 @export var knockback_force := 1250
 @export var explosion_particle_prefab: PackedScene
@@ -26,3 +27,4 @@ func on_health_changed(health):
 		get_tree().root.add_child(explosion_particles)
 		explosion_particles.global_position = global_position
 		explosion_particles.emitting = true
+		AudioManager.play_sound_effect(explosion_sfx)

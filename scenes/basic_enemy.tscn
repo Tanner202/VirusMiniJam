@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://h4calpoefb0d"]
+[gd_scene load_steps=7 format=3 uid="uid://h4calpoefb0d"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_3r6i1"]
+[ext_resource type="AudioStream" uid="uid://d4m37rurc5ovp" path="res://sounds/Explosion1.wav" id="2_24gb3"]
 [ext_resource type="PackedScene" uid="uid://d16xdi15ar5jr" path="res://scenes/explosion_particles.tscn" id="2_yji0i"]
 [ext_resource type="PackedScene" uid="uid://8g7xvprl3522" path="res://scenes/health.tscn" id="3_py2ju"]
 [ext_resource type="Texture2D" uid="uid://mr5naf1p6nmh" path="res://sprites/itchenemy2.png" id="4_c21ns"]
@@ -12,6 +13,7 @@ radius = 80.0
 position = Vector2(-916, -435)
 collision_layer = 2
 script = ExtResource("1_3r6i1")
+explosion_sfx = ExtResource("2_24gb3")
 explosion_particle_prefab = ExtResource("2_yji0i")
 
 [node name="Health" parent="." instance=ExtResource("3_py2ju")]
